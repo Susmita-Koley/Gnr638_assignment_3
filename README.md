@@ -16,28 +16,17 @@ The architecture undergoes standard `n1=16` normalization to execute `~2.56M` / 
 
 ## 3. Environment Execution Protocol
 
-### Step 1: Comprehensive Data Creation
-Extract localized deterministic grid paths:
-```powershell
-python slice_dataset.py --source_dir ../assignment1 --dest_dir ./data --seed 777 --max_train 150 --max_val 30
-```
-
-### Step 2: Native Lovász Training Matrix
+### Step 1: Native Lovász Training Matrix
 ```powershell
 python train.py --data_root data --epochs 10 --batch_size 8 --max_train 2400 --max_val 1024 --seed 777
 ```
 
-### Step 3: Official Configuration Testing
+### Step 2: Official Configuration Testing
 ```powershell
 python train_official.py --data_root data --epochs 10 --batch_size 8 --max_train 2400 --max_val 1024 --seed 777
 ```
 
-### Step 4: Cross-Model Numerical Extraction 
+### Step 3: Cross-Model Numerical Extraction 
 ```powershell
 python compare_official.py --data_root data --our_ckpt checkpoints/best_model.pt --official_ckpt checkpoints/official_best_model.pt --official_path ../officialSNUNet --seed 777
-```
-
-### Step 5: Visual Curve Generation
-```powershell
-python plot.py
 ```
